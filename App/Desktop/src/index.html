@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    <meta charset="UTF-8" />
+    <title>CoHance Authentication</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;900&family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <div id="left">
+          <p>Linked Services:</p>
+        </div>
+        <div id="right">
+          <i class="ph-plus-circle"></i>
+        </div>
+      </div>
+      <div id="services">
+        
+      </div>
+    </div>
+    
+    <button onclick="document.location.reload()" style="position: fixed; right:0;bottom:0;">Reload</button>
+  </body>
+  <script>
+    
+    function addService(name, code, id){
+      const node = document.createElement("div");
+      node.classList.add("service");
+      const title = document.createElement("p");
+      title.classList.add("title");
+      title.innerHTML = name;
+      const codeE = document.createElement("p");
+      codeE.classList.add("code");
+      codeE.innerHTML = code;
+      const progress = document.createElement("div");
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      const circleOuter = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circleOuter.setAttribute("cx", "20");
+      circleOuter.setAttribute("cy", "20");
+      circleOuter.setAttribute("r", "15");
+      circleOuter.style = "--percent:100;";
+      const circleInner = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circleInner.setAttribute("cx", "20");
+      circleInner.setAttribute("cy", "20");;
+      circleInner.setAttribute("r", "15");
+      circleInner.style = "--percent:100;";
+      svg.appendChild(circleOuter);
+      svg.appendChild(circleInner);
+      circleInner.classList.add("innerCircle");
+      circleOuter.classList.add("outerCircle");
+      progress.appendChild(svg);
+      node.appendChild(title);
+      node.appendChild(codeE);
+      node.appendChild(progress);
+      document.getElementById("services").appendChild(node);
+    }
+    addService("Blaze Client", "AAAAAAA");
+  </script>
+  <style>
+
+    .code{
+      font-family: 'PT Mono', monospace;
+      background-color: white;
+    }
+    .title{
+      font-size: 20px;
+      margin-bottom: 0;
+    }
+    svg{
+      width:40px;
+      height:40px;
+      transform: rotate(-90deg);
+
+    }
+    .outerCircle, .innerCircle{
+      stroke-width: 3;
+      stroke:rgb(97, 97, 97);
+      fill:none;
+      transition: all 1s linear;
+    }
+    svg circle{
+      stroke-width: 3;
+      stroke:rgb(97, 97, 97);
+      fill:none;
+      transition: all 1s linear;
+    }
+    .innerCircle{
+      stroke-width: 5;
+      transform: rotate(calc(var(--percent)/100*-360deg));
+      transform-origin: center;
+      stroke-dasharray: 93.75px;
+      stroke-dashoffset: calc(93.75px - (93.75px * var(--percent)) / 100);
+      stroke: #3498db; 
+      transition: all 10s linear;
+    }
+    svg circle:last-of-type {
+      stroke-width: 5;
+      transform: rotate(calc(var(--percent)/100*-360deg));
+      transform-origin: center;
+      stroke-dasharray: 93.75px;
+      stroke-dashoffset: calc(93.75px - (93.75px * var(--percent)) / 100);
+      stroke: #3498db; 
+      transition: all 10s linear;
+    }
+    .service{
+      width: 200px;
+      height: 200px;
+      background-color: rgba(0, 0, 0, 0.15);
+      margin-left:10px;
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: column;
+    }
+    #services{
+      display: flex;
+      flex-wrap: wrap;
+
+      position: absolute;
+      left: 0px;
+      top: 60px;
+      width: 100vw;
+    }
+    #wrapper{
+      position: absolute;
+      width: calc(100vw - 20px);
+      left: 0;
+      top: 0;
+    }
+    #header{
+      height: 60px;
+      width: calc(100vw - 40px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 20px;
+      padding-right: 20px;
+      font-size: 600;
+    }
+    #header i{
+      font-size: 27px;
+      cursor: pointer;
+    }
+    #header p{
+      font-size: 20px;
+    }
+    *{
+      font-family: 'Lexend Deca', sans-serif;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      font-family: 'Ubuntu', sans-serif;
+    }
+  </style>
+</html>
