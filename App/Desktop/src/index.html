@@ -28,6 +28,8 @@
     <button onclick="document.location.reload()" style="position: fixed; right:0;bottom:0;">Reload</button>
   </body>
   <script>
+    let ws = new WebSocket("ws://localhost:8080/chauth");
+    console.log("Connected to the websocket!")
     
     function addService(name, code, id){
       const node = document.createElement("div");
